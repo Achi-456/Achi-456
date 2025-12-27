@@ -65,7 +65,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
             </p>
         </td>
         <td width="40%" align="center" valign="middle">
-            <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/gif3(1).gif" width="100%" alt="Coding Gif"/>
+            <img src="https://github.com/Achi-456/Achi-456/blob/main/gif3%20(1).gif" width="100%" alt="Coding Gif"/>
         </td>
     </tr>
 </table>
@@ -75,7 +75,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 <div align="center">
 <h3>🚀 Weekly Engineering Velocity</h3>
-<p><i>Last updated: 2025-12-27 20:08 UTC</i></p>
+<p><i>Last updated: 2025-12-27 20:14 UTC</i></p>
 
 | Repository | Weekly Progress | % | Status |
 | :--- | :--- | :--- | :--- |

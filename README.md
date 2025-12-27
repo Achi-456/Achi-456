@@ -1,3 +1,28 @@
+
+
+<div align="center">
+<h3>🚀 Weekly Engineering Velocity</h3>
+<p><i>Last updated: 2025-12-27 19:34 UTC</i></p>
+
+| Repository | Weekly Progress | % | Status |
+| :--- | :--- | :--- | :--- |
+| 🚧 **RHEL Scripts** | `██████████░░░░░░░░░░` | **50%** | **2/4** |
+| 🚧 **Infra Playground** | `█████████████░░░░░░░` | **66%** | **2/3** |
+| 🚧 **K8s Labs** | `████░░░░░░░░░░░░░░░░` | **20%** | **1/5** |
+| 🚧 **Eng Journal** | `█████░░░░░░░░░░░░░░░` | **28%** | **2/7** |
+</div>
+
+<p align="center"><img src="https://img.shields.io/badge/Total_Commits-7-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>
+
+```mermaid
+%%{init: {'theme': 'dark', 'themeVariables': { 'pie1': '#800020', 'pie2': '#2E64FE', 'pie3': '#2ea44f', 'pie4': '#dbab09' }}}%%
+pie title Work Distribution
+    "RHEL Scripts" : 2
+    "Infra Playground" : 2
+    "K8s Labs" : 1
+    "Eng Journal" : 2
+```
+
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=800020&height=300&section=header&text=Achintha%20Rukshan&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=DevOps%20and%20Infrastructure%20Engineer&descAlignY=55&descAlign=62"/>
 </div>

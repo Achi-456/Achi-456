@@ -102,9 +102,42 @@ def update_readme(stats_rows, total_commits, mermaid_pie):
     badge_url = f"https://img.shields.io/badge/Total_Commits-{total_commits}-2E64FE?style=for-the-badge&logo=github&logoColor=white"
     badge_html = f'\n<p align="center"><img src="{badge_url}" /></p>\n'
 
-    # 3. Mermaid Chart (Matched to your Profile Theme)
-    mermaid_section = f"""
-```mermaid
-%%{{init: {{'theme': 'dark', 'themeVariables': {{ 'pie1': '#800020', 'pie2': '#2E64FE', 'pie3': '#2ea44f', 'pie4': '#dbab09' }}}}}}%%
-pie title Work Distribution
-{mermaid_pie}
+    # 3. Mermaid Chart 
+    # WE USE SIMPLE STRING CONCATENATION HERE TO AVOID SYNTAX ERRORS
+    mermaid_header = "```mermaid\n"
+    mermaid_header += "%%{init: {'theme': 'dark', 'themeVariables': { 'pie1': '#800020', 'pie2': '#2E64FE', 'pie3': '#2ea44f', 'pie4': '#dbab09' }}}%%\n"
+    mermaid_header += "pie title Work Distribution\n"
+    
+    mermaid_footer = "```\n"
+    
+    mermaid_section = mermaid_header + mermaid_pie + mermaid_footer
+
+    new_content = f"{table_header}\n{stats_content}\n{table_footer}\n{badge_html}\n{mermaid_section}"
+
+    if os.path.exists(readme_path):
+        with open(readme_path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        start_marker = ""
+        end_marker = ""
+
+        start_index = content.find(start_marker)
+        end_index = content.find(end_marker)
+
+        if start_index != -1 and end_index != -1:
+            before = content[:start_index + len(start_marker)]
+            after = content[end_index:]
+            
+            final_content = f"{before}\n{new_content}\n{after}"
+            
+            with open(readme_path, "w", encoding="utf-8") as f:
+                f.write(final_content)
+            print("README updated successfully.")
+        else:
+            print("Markers not found in README.md!")
+    else:
+        print("README.md not found!")
+
+if __name__ == "__main__":
+    rows, total, pie_data = get_weekly_progress()
+    update_readme(rows, total, pie_data)

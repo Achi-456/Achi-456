@@ -1,0 +1,37 @@
+name: Update Weekly Goals
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Run every 6 hours
+  workflow_dispatch:      # Allow manual run
+  push:
+    branches:
+      - main
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Update Script
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python update_goals.py
+
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "🤖 Update Weekly Goals Dashboard"
+          file_pattern: README.md

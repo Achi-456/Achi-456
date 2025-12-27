@@ -56,7 +56,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 <div align="center">
 
-  <img src="https://github-readme-stats.vercel.app/api?username=Achi-456&show_icons=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=800020&text_color=2E64FE&icon_color=800020" height="150" alt="stats graph" />
+  <img src="https://github-readme-stats.vercel.app/api?username=Achi-456&show_icons=true&hide_border=true&bg_color=0d1117&title_color=800020&text_color=2E64FE&icon_color=800020" height="150" alt="stats graph" />
 
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Achi-456&layout=compact&hide_border=true&bg_color=0d1117&title_color=800020&text_color=2E64FE&langs_count=6" height="150" alt="languages graph" />
 

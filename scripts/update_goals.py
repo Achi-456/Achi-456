@@ -132,7 +132,7 @@ def get_modern_tracker():
     start_of_week = now - timedelta(days=now.weekday())
     start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
     
-    html_blocks = []
+    rows = []
     total_commits = 0
     
     print(f"Fetch start: {start_of_week.strftime('%Y-%m-%d')}")
@@ -151,51 +151,56 @@ def get_modern_tracker():
             if goal == 0: pct = 100
             else: pct = min(int((count / goal) * 100), 100)
             
-            # Generate HTML Block (No Table)
-            # Using geps.dev for the green progress bar
-            block = f"""
-<div style="margin-bottom: 10px;">
-  <a href="{repo_url}" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/{label}-181717?style=flat&logo=github&logoColor=white" height="25" />
-  </a>
-  <br/>
-  <img src="https://geps.dev/progress/{pct}?color=90EE90&height=10" alt="Progress Bar" />
-  <code>{count} / {goal} commits</code>
-</div>
+            # New "Full Width" Row Design
+            row = f"""
+<tr>
+  <td align="left" width="50%">
+    <strong><a href="{repo_url}">{label}</a></strong>
+  </td>
+  <td align="right" width="50%">
+    {count} / {goal}
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <img src="https://geps.dev/progress/{pct}?color=90EE90&height=6" width="100%" alt="Progress Bar">
+  </td>
+</tr>
 """
-            html_blocks.append(block)
+            rows.append(row)
             
         except Exception as e:
             print(f"Error {repo_name}: {e}")
-            html_blocks.append(f"<p>❌ {repo_name}: Error fetching data</p>")
+            rows.append(f"<tr><td colspan='2'>❌ {repo_name}: Error</td></tr>")
 
-    return "\n".join(html_blocks), total_commits
+    return "\n".join(rows), total_commits
 
 # ==========================================
 # 📝 WRITE TO FILE
 # ==========================================
 
 if __name__ == "__main__":
-    tracker_content, total = get_modern_tracker()
+    table_rows, total = get_modern_tracker()
     
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
     
-    # Modernized Velocity Section
+    # Modernized Velocity Section (Full Width Table)
     velocity_section = f"""
 <div align="center">
   <h3>🚀 Weekly Engineering Velocity</h3>
   <p><i>Last updated: {now_str}</i></p>
   
-  <div align="left" style="width: 60%; margin: auto;">
-    {tracker_content}
-  </div>
+  <table border="0" width="80%">
+    {table_rows}
+  </table>
+  
+  <br/>
+  <p><img src="https://img.shields.io/badge/Total_Weekly_Commits-{total}-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>
 </div>
 """
 
-    badge_html = f'\n<p align="center"><img src="https://img.shields.io/badge/Total_Weekly_Commits-{total}-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>\n'
-
-    # Combine (No Mermaid Pie Chart anymore)
-    full_readme = HEADER_TOP + "\n" + ARSENAL_HTML + "\n" + velocity_section + "\n" + badge_html + "\n" + FOOTER_HTML
+    # Combine
+    full_readme = HEADER_TOP + "\n" + ARSENAL_HTML + "\n" + velocity_section + "\n" + FOOTER_HTML
 
     with open("README.md", "w", encoding="utf-8") as f:
         f.write(full_readme)

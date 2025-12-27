@@ -1,38 +1,54 @@
-
 import requests
 import datetime
 import os
+import sys
 
 # --- CONFIGURATION ---
 USERNAME = "Achi-456"
+
+# Markers in README.md (MUST NOT BE EMPTY)
+START_MARKER = ""
+END_MARKER = ""
+
 # Format: "Repo Name": Goal_Commits_Per_Week
 REPOS = {
     "rhel-automation-scripts": 4,
     "infrastructure-playground": 3,
     "k8s-lab-experiments": 5,
-    "engineering-journal": 7  # 1 per day
+    "engineering-journal": 7
 }
 
 def get_weekly_commits(repo_name):
-    # Calculate start of the week (Monday)
+    """Fetches commit count for the current week (starting Monday)."""
     today = datetime.datetime.now()
+    # Calculate start of the week (Monday)
     start_of_week = today - datetime.timedelta(days=today.weekday())
     start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
     iso_date = start_of_week.isoformat() + "Z"
 
     url = f"https://api.github.com/repos/{USERNAME}/{repo_name}/commits?since={iso_date}"
+    
+    # Check if Token exists
+    if "GITHUB_TOKEN" not in os.environ:
+        print("Error: GITHUB_TOKEN is missing.")
+        return 0
+
     headers = {"Authorization": f"token {os.environ['GITHUB_TOKEN']}"}
     
     try:
         r = requests.get(url, headers=headers)
         if r.status_code == 200:
             return len(r.json())
-        return 0
-    except:
+        else:
+            print(f"Failed to fetch {repo_name}: {r.status_code}")
+            return 0
+    except Exception as e:
+        print(f"Error fetching {repo_name}: {e}")
         return 0
 
 def create_progress_bar(current, goal):
-    # Create a visual bar: [■■■■□□]
+    """Generates a text-based progress bar."""
+    if goal == 0: goal = 1 # Avoid division by zero
     percent = min(current / goal, 1.0)
     bar_length = 10
     filled = int(bar_length * percent)
@@ -42,6 +58,9 @@ def create_progress_bar(current, goal):
     return f"`{bar}` {status} **{current}/{goal}**"
 
 def main():
+    print(f"Starting update for user: {USERNAME}")
+    
+    # Generate the Markdown Table
     markdown_output = ["### 🎯 Weekly Goal Tracker\n"]
     markdown_output.append("| Repository | Weekly Progress | Status |")
     markdown_output.append("| :--- | :--- | :--- |")
@@ -52,27 +71,36 @@ def main():
         # Beautify repo name
         display_name = repo.replace("-", " ").title().replace("K8s", "K8s")
         markdown_output.append(f"| **{display_name}** | {bar} |")
+        print(f"Processed {repo}: {count}/{goal}")
     
     markdown_output.append(f"\n*Last updated: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}*")
     
     # Read the README
-    with open("README.md", "r", encoding="utf-8") as f:
+    readme_path = "README.md"
+    if not os.path.exists(readme_path):
+        print("Error: README.md not found.")
+        sys.exit(1)
+
+    with open(readme_path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    # Regex-like replacement using string splitting
-    start_marker = ""
-    end_marker = ""
-    
-    if start_marker in content and end_marker in content:
-        pre_content = content.split(start_marker)[0]
-        post_content = content.split(end_marker)[1]
-        new_content = pre_content + start_marker + "\n" + "\n".join(markdown_output) + "\n" + end_marker + post_content
+    # Safety Check: Ensure markers are valid strings
+    if not START_MARKER or not END_MARKER:
+        print("Error: Markers are empty.")
+        sys.exit(1)
+
+    # Replace content between markers
+    if START_MARKER in content and END_MARKER in content:
+        pre_content = content.split(START_MARKER)[0]
+        post_content = content.split(END_MARKER)[1]
         
-        with open("README.md", "w", encoding="utf-8") as f:
+        new_content = pre_content + START_MARKER + "\n" + "\n".join(markdown_output) + "\n" + END_MARKER + post_content
+        
+        with open(readme_path, "w", encoding="utf-8") as f:
             f.write(new_content)
-        print("README updated successfully.")
+        print("SUCCESS: README updated successfully.")
     else:
-        print("Markers not found in README.")
+        print("WARNING: Markers not found in README.md. Please ensure and exist.")
 
 if __name__ == "__main__":
     main()

@@ -10,7 +10,7 @@ USERNAME = "Achi-456"
 
 # ⚠️ ACTION REQUIRED: Upload your GIF to your repo and paste the RAW link here
 # Example: "https://raw.githubusercontent.com/Achi-456/Achi-456/main/gif3(1).gif"
-GIF_URL = "https://raw.githubusercontent.com/Achi-456/Achi-456/main/gif3(1).gif" 
+GIF_URL = "https://github.com/Achi-456/Achi-456/blob/main/gif3%20(1).gif" 
 
 REPOS = {
     "Rhel-Automation-Scripts": {"goal": 4, "label": "RHEL Scripts"},

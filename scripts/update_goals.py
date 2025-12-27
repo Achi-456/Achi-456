@@ -1,117 +1,101 @@
-import requests
-import datetime
 import os
-import sys
+from github import Github
+from datetime import datetime, timedelta
+import pytz
 
 # --- CONFIGURATION ---
-USERNAME = "Achi-456"
-
-# Format: "Repo Name": Goal_Commits_Per_Week
+USERNAME = "YOUR_GITHUB_USERNAME"  # <--- REPLACE THIS
+# Define your repositories and their weekly goal numbers
 REPOS = {
-    "rhel-automation-scripts": 4,
-    "infrastructure-playground": 3,
-    "k8s-lab-experiments": 5,
-    "engineering-journal": 7
+    "Rhel-Automation-Scripts": {"goal": 4, "label": "RHEL Scripts"},
+    "Infrastructure-Playground": {"goal": 3, "label": "Infra Playground"},
+    "K8S-Lab-Experiments": {"goal": 5, "label": "K8s Labs"},
+    "Engineering-Journal": {"goal": 7, "label": "Eng Journal"}
 }
 
-def get_weekly_commits(repo_name):
-    """Fetches commit count for the current week (starting Monday)."""
-    today = datetime.datetime.now()
-    start_of_week = today - datetime.timedelta(days=today.weekday())
+def get_weekly_progress():
+    # Get GitHub Token from environment variables (set by GitHub Actions)
+    token = os.getenv('GH_TOKEN')
+    g = Github(token)
+    user = g.get_user(USERNAME)
+    
+    # Calculate start of the week (Monday)
+    now = datetime.now(pytz.utc)
+    start_of_week = now - timedelta(days=now.weekday())
     start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
-    iso_date = start_of_week.isoformat() + "Z"
 
-    url = f"https://api.github.com/repos/{USERNAME}/{repo_name}/commits?since={iso_date}"
-    
-    if "GITHUB_TOKEN" not in os.environ:
-        print("Error: GITHUB_TOKEN is missing.")
-        return 0
+    stats = []
+    total_commits_all = 0
+    mermaid_data = ""
 
-    headers = {"Authorization": f"token {os.environ['GITHUB_TOKEN']}"}
-    
-    try:
-        r = requests.get(url, headers=headers)
-        if r.status_code == 200:
-            return len(r.json())
-        else:
-            print(f"Failed to fetch {repo_name}: {r.status_code}")
-            return 0
-    except Exception as e:
-        print(f"Error fetching {repo_name}: {e}")
-        return 0
+    print(f"Checking commits since: {start_of_week.strftime('%Y-%m-%d')}")
 
-def create_progress_bar(current, goal):
-    """Generates a text-based progress bar."""
-    if goal == 0: goal = 1 
-    percent = min(current / goal, 1.0)
-    bar_length = 10
-    filled = int(bar_length * percent)
-    bar = "▓" * filled + "░" * (bar_length - filled)
-    
-    status = "✅" if current >= goal else "🚧"
-    return f"`{bar}` {status} **{current}/{goal}**"
-
-def main():
-    print(f"Starting update for user: {USERNAME}")
-    
-    # --- SAFE MARKER CONSTRUCTION ---
-    start_marker = "<" + "!-- START_WEEKLY_GOALS --" + ">"
-    end_marker = "<" + "!-- END_WEEKLY_GOALS --" + ">"
-    
-    # Generate the Markdown Table
-    markdown_output = ["### 🎯 Weekly Goal Tracker\n"]
-    markdown_output.append("| Repository | Weekly Progress | Status |")
-    markdown_output.append("| :--- | :--- | :--- |")
-    
-    for repo, goal in REPOS.items():
-        count = get_weekly_commits(repo)
-        bar = create_progress_bar(count, goal)
-        display_name = repo.replace("-", " ").title().replace("K8s", "K8s")
-        markdown_output.append(f"| **{display_name}** | {bar} |")
-        print(f"Processed {repo}: {count}/{goal}")
-    
-    markdown_output.append(f"\n*Last updated: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}*")
-    
-    readme_path = "README.md"
-    if not os.path.exists(readme_path):
-        print("Error: README.md not found.")
-        sys.exit(1)
-
-    with open(readme_path, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    # --- AUTO-HEALING LOGIC ---
-    # If markers are missing, insert them automatically before the "Github Stats" section
-    if start_marker not in content or end_marker not in content:
-        print("WARNING: Markers not found. Auto-inserting them...")
-        
-        # Look for the Stats section header
-        target_section = "### 📊 Github Stats"
-        
-        if target_section in content:
-            # Insert markers BEFORE the stats section
-            insertion = f"\n{start_marker}\n{end_marker}\n\n{target_section}"
-            content = content.replace(target_section, insertion)
-        else:
-            # Fallback: Append to end of file
-            content += f"\n\n{start_marker}\n{end_marker}\n"
+    for repo_name, config in REPOS.items():
+        try:
+            repo = user.get_repo(repo_name)
+            # Get commits since start of week
+            commits = repo.get_commits(since=start_of_week, author=USERNAME)
+            count = commits.totalCount
             
-    # Now perform the update as normal
-    start_pos = content.find(start_marker)
-    end_pos = content.find(end_marker)
+            goal = config['goal']
+            label = config['label']
+            total_commits_all += count
 
-    if start_pos != -1 and end_pos != -1:
-        pre_content = content[:start_pos + len(start_marker)]
-        post_content = content[end_pos:]
-        
-        new_content = pre_content + "\n" + "\n".join(markdown_output) + "\n" + post_content
-        
-        with open(readme_path, "w", encoding="utf-8") as f:
-            f.write(new_content)
-        print("SUCCESS: README updated successfully.")
-    else:
-        print("CRITICAL ERROR: Could not place markers even after auto-insert.")
-        sys.exit(1)
+            # Calculate Percentage
+            pct = min(int((count / goal) * 100), 100)
+            
+            # Determine Color based on progress
+            if count >= goal:
+                color = "2ea44f" # Green
+                status_icon = "✅"
+            elif count > 0:
+                color = "dbab09" # Yellow
+                status_icon = "🚧" 
+            else:
+                color = "ff0000" # Red
+                status_icon = "💤"
 
-if __name__ == "__main__":
-    main()
+            # 1. Generate HTML Row
+            progress_url = f"https://progress-bar.dev/{pct}/?scale=100&title=progress&width=120&color={color}&suffix=%"
+            
+            row = f"""
+| **{label}** | <img src="{progress_url}" alt="{pct}%" /> | {status_icon} **{count}/{goal}** |"""
+            stats.append(row)
+
+            # 2. Generate Mermaid Data (Only add if commits > 0 to keep graph clean)
+            if count > 0:
+                mermaid_data += f'    "{label}" : {count}\n'
+            else:
+                 mermaid_data += f'    "{label}" : 0.1\n' # Small value to show empty slice
+
+        except Exception as e:
+            print(f"Error checking {repo_name}: {e}")
+            stats.append(f"| **{repo_name}** | Error | ❌ |")
+
+    return stats, total_commits_all, mermaid_data
+
+def update_readme(stats_rows, total_commits, mermaid_pie):
+    readme_path = "README.md"
+    
+    # HTML Table Header
+    table_header = """
+<div align="center">
+
+| 📦 Repository | 📊 Weekly Progress | 📈 Status |
+| :--- | :--- | :--- |"""
+    
+    table_footer = "</div>"
+    
+    # Join the rows
+    stats_content = "\n".join(stats_rows)
+
+    # Generate the Total Commits Badge
+    badge_url = f"https://img.shields.io/badge/Total_Commits_This_Week-{total_commits}-blue?style=for-the-badge&logo=git&logoColor=white"
+    badge_html = f'<p align="center"><br/><img src="{badge_url}" alt="Total Commits" /></p>'
+
+    # Generate Mermaid Chart
+    mermaid_section = f"""
+```mermaid
+%%{{init: {{'theme': 'base', 'themeVariables': {{ 'pie1': '#2ea44f', 'pie2': '#dbab09', 'pie3': '#2188ff', 'pie4': '#ff5555' }}}}}}%%
+pie title Work Distribution (By Commits)
+{mermaid_pie}

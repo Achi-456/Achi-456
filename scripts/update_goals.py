@@ -8,11 +8,8 @@ import pytz
 # ==========================================
 USERNAME = "Achi-456"
 
-# ⚠️ URGENT: PASTE YOUR GIF LINK BELOW
-# 1. Go to your repo, open 'gif3 (1).gif', click 'Raw', and copy the URL.
-# 2. Paste it inside the quotes below.
+# ⚠️ GIF CONFIGURATION
 GIF_URL = "https://raw.githubusercontent.com/Achi-456/Achi-456/main/gif3%20(1).gif" 
-# (I added a likely URL above based on standard GitHub patterns, but double-check it!)
 
 REPOS = {
     "Rhel-Automation-Scripts": {"goal": 4, "label": "RHEL Scripts"},
@@ -67,7 +64,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 """
 
 # ==========================================
-# 2. ARSENAL SECTION (Table Layout with border="0")
+# 2. ARSENAL SECTION
 # ==========================================
 ARSENAL_HTML = f"""
 ### 🔮 The Arsenal
@@ -123,13 +120,7 @@ FOOTER_HTML = """
 # 🧠 LOGIC: CALCULATE STATS
 # ==========================================
 
-def generate_ascii_bar(count, goal, length=20):
-    if goal == 0: pct = 1.0
-    else: pct = min(count / goal, 1.0)
-    filled = int(length * pct)
-    return "█" * filled + "░" * (length - filled), int(pct * 100)
-
-def get_data():
+def get_modern_tracker():
     token = os.getenv('GH_TOKEN')
     if not token: raise ValueError("GH_TOKEN is missing")
     
@@ -141,61 +132,70 @@ def get_data():
     start_of_week = now - timedelta(days=now.weekday())
     start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
     
-    rows = []
+    html_blocks = []
     total_commits = 0
-    mermaid_data = ""
     
     print(f"Fetch start: {start_of_week.strftime('%Y-%m-%d')}")
 
     for repo_name, config in REPOS.items():
         try:
             repo = user.get_repo(repo_name)
+            repo_url = repo.html_url
             count = repo.get_commits(since=start_of_week, author=USERNAME).totalCount
             
             goal = config['goal']
             label = config['label']
             total_commits += count
             
-            bar, pct = generate_ascii_bar(count, goal)
-            status = "✅" if count >= goal else "🚧" if count > 0 else "💤"
+            # Calculate Percentage
+            if goal == 0: pct = 100
+            else: pct = min(int((count / goal) * 100), 100)
             
-            rows.append(f"| {status} **{label}** | `{bar}` | **{pct}%** | **{count}/{goal}** |")
-            
-            val = count if count > 0 else 0.01
-            mermaid_data += f'    "{label}" : {val}\n'
+            # Generate HTML Block (No Table)
+            # Using geps.dev for the green progress bar
+            block = f"""
+<div style="margin-bottom: 10px;">
+  <a href="{repo_url}" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/{label}-181717?style=flat&logo=github&logoColor=white" height="25" />
+  </a>
+  <br/>
+  <img src="https://geps.dev/progress/{pct}?color=90EE90&height=10" alt="Progress Bar" />
+  <code>{count} / {goal} commits</code>
+</div>
+"""
+            html_blocks.append(block)
             
         except Exception as e:
             print(f"Error {repo_name}: {e}")
-            rows.append(f"| ❌ {repo_name} | Error | 0% | 0/0 |")
+            html_blocks.append(f"<p>❌ {repo_name}: Error fetching data</p>")
 
-    return rows, total_commits, mermaid_data
+    return "\n".join(html_blocks), total_commits
 
 # ==========================================
 # 📝 WRITE TO FILE
 # ==========================================
 
 if __name__ == "__main__":
-    rows, total, pie_data = get_data()
+    tracker_content, total = get_modern_tracker()
     
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
-    tracker_html = f"""
+    
+    # Modernized Velocity Section
+    velocity_section = f"""
 <div align="center">
-<h3>🚀 Weekly Engineering Velocity</h3>
-<p><i>Last updated: {now_str}</i></p>
+  <h3>🚀 Weekly Engineering Velocity</h3>
+  <p><i>Last updated: {now_str}</i></p>
+  
+  <div align="left" style="width: 60%; margin: auto;">
+    {tracker_content}
+  </div>
+</div>
+"""
 
-| Repository | Weekly Progress | % | Status |
-| :--- | :--- | :--- | :--- |
-""" + "\n".join(rows) + "\n</div>"
+    badge_html = f'\n<p align="center"><img src="https://img.shields.io/badge/Total_Weekly_Commits-{total}-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>\n'
 
-    badge_html = f'\n<p align="center"><img src="https://img.shields.io/badge/Total_Commits-{total}-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>\n'
-
-    mermaid_block = "```mermaid\n"
-    mermaid_block += "%%{init: {'theme': 'dark', 'themeVariables': { 'pie1': '#800020', 'pie2': '#2E64FE', 'pie3': '#2ea44f', 'pie4': '#dbab09' }}}%%\n"
-    mermaid_block += "pie title Work Distribution\n"
-    mermaid_block += pie_data
-    mermaid_block += "```\n"
-
-    full_readme = HEADER_TOP + "\n" + ARSENAL_HTML + "\n" + tracker_html + "\n" + badge_html + "\n" + mermaid_block + "\n" + FOOTER_HTML
+    # Combine (No Mermaid Pie Chart anymore)
+    full_readme = HEADER_TOP + "\n" + ARSENAL_HTML + "\n" + velocity_section + "\n" + badge_html + "\n" + FOOTER_HTML
 
     with open("README.md", "w", encoding="utf-8") as f:
         f.write(full_readme)

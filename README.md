@@ -1,6 +1,6 @@
 <div align="center">
 
-# Hi there 👋, I'm [Achintha Rukshan ]
+# Hi there 👋, I'm Achintha Rukshan
 
 ### ☁️ DevOps Engineer | 🏗️ Infrastructure | 🐧 Linux Enthusiast
 
@@ -10,14 +10,12 @@
 
 <br/>
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/YOUR_LINKEDIN_USERNAME) 
-[![Email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:YOUR_EMAIL@gmail.com)
-[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?logo=html5&logoColor=white)](https://YOURWEBSITE.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/achintha-rukshan-583671344/) 
+[![Email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:achinthar456@gmail.com)
 
 <br/>
 
-[![KodeKloud](https://img.shields.io/badge/KodeKloud-Profile-blue?logo=kubernetes&logoColor=white)](https://kodekloud.com/user/YOUR_KODEKLOUD_USERNAME)
-[![HackerRank](https://img.shields.io/badge/-HackerRank-2EC866?style=flat&logo=HackerRank&logoColor=white)](https://hackerrank.com/YOUR_PROFILE)
+[![KodeKloud](https://img.shields.io/badge/KodeKloud-Profile-blue?logo=kubernetes&logoColor=white)](https://kodekloud.com/user/YOUR_PROFILE_HERE)
 
 </div>
 
@@ -25,10 +23,10 @@
 
 ### 👨‍💻 About Me
 
-- 🔭 I’m currently working on **Automating On-Premise Infrastructure.**
+- 🔭 I’m currently working on **Automating On-Premise Infrastructure** at **MillenniumIT ESP**.
 - 🌱 I’m currently learning **Advanced Kubernetes & Ansible.**
-- 🎓 I’m a Student at **University of Moratuwa** & Intern at **MillenniumIT ESP.**
-- 💬 Ask me about **RHEL, VMware, and CI/CD pipelines.**
+- 🎓 I’m an Engineering Student at **University of Moratuwa** (Electronic & Telecom).
+- 📧 Reach me at **achinthar456@gmail.com** (Personal) or **hathurusinghahar.22@uom.lk** (Uni).
 
 ---
 
@@ -46,6 +44,6 @@
 ### 📊 Github Stats
 
 <div align="center">
-<img src="https://github-readme-stats.vercel.app/api?username=[Achi-456]&show_icons=true&theme=radical&hide_border=true" height="150" alt="stats graph"  />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=[Achi-456]&layout=compact&theme=radical&hide_border=true&langs_count=6" height="150" alt="languages graph" />
+<img src="https://github-readme-stats.vercel.app/api?username=Achi-456&show_icons=true&theme=radical&hide_border=true" height="150" alt="stats graph"  />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Achi-456&layout=compact&theme=radical&hide_border=true&langs_count=6" height="150" alt="languages graph" />
 </div>

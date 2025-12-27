@@ -93,7 +93,7 @@ ARSENAL_HTML = f"""
       </p>
     </td>
     <td width="45%" valign="middle" align="center">
-       <img src="{GIF_URL}" width="100%" alt="Coding Gif"/>
+        <img src="{GIF_URL}" width="100%" alt="Coding Gif"/>
     </td>
   </tr>
 </table>
@@ -102,17 +102,14 @@ ARSENAL_HTML = f"""
 """
 
 # ==========================================
-# 3. STATS SECTION
+# 3. STATS SECTION (UPDATED)
 # ==========================================
+# Removed the profile-summary-card images as requested
 FOOTER_HTML = """
 ### 📊 Github Stats
 
 <div align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=Achi-456&theme=dark&hide_border=true&background=0d1117&ring=2E64FE&fire=2E64FE&currStreakNum=2E64FE&currStreakLabel=2E64FE" alt="streak stats" />
-  <br/>
-  <br/>
-  <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/profile-summary-card-output/default/0-profile-details.svg" width="45%" />
-  <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/profile-summary-card-output/default/2-most-commit-language.svg" width="45%" />
 </div>
 """
 
@@ -144,23 +141,26 @@ def get_modern_tracker():
             count = repo.get_commits(since=start_of_week, author=USERNAME).totalCount
             
             goal = config['goal']
-            label = config['label']
+            label = config['label'].replace(" ", "%20") # URL encode spaces
             total_commits += count
             
-            # Calculate Percentage
-            if goal == 0: pct = 100
-            else: pct = min(int((count / goal) * 100), 100)
+            # Determine color based on progress
+            if count >= goal:
+                color = "2ea44f" # Green
+            elif count > 0:
+                color = "e3b341" # Yellow
+            else:
+                color = "b60205" # Red
             
-            # Generate HTML Block (No Table)
-            # Using geps.dev for the green progress bar
+            # Generate HTML Block (Modern Flat Badges)
+            # 1. Repo Name Badge (Acts as the direct Link/Icon)
+            # 2. Count Badge
             block = f"""
-<div style="margin-bottom: 10px;">
+<div style="margin-bottom: 8px;">
   <a href="{repo_url}" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/{label}-181717?style=flat&logo=github&logoColor=white" height="25" />
+    <img src="https://img.shields.io/badge/📂%20{label}-2E64FE?style=for-the-badge&logo=github&logoColor=white" height="28" />
   </a>
-  <br/>
-  <img src="https://geps.dev/progress/{pct}?color=90EE90&height=10" alt="Progress Bar" />
-  <code>{count} / {goal} commits</code>
+  <img src="https://img.shields.io/badge/Commits-{count}%2F{goal}-{color}?style=for-the-badge" height="28" />
 </div>
 """
             html_blocks.append(block)
@@ -186,7 +186,7 @@ if __name__ == "__main__":
   <h3>🚀 Weekly Engineering Velocity</h3>
   <p><i>Last updated: {now_str}</i></p>
   
-  <div align="left" style="width: 60%; margin: auto;">
+  <div align="center" style="margin: auto;">
     {tracker_content}
   </div>
 </div>
@@ -194,7 +194,7 @@ if __name__ == "__main__":
 
     badge_html = f'\n<p align="center"><img src="https://img.shields.io/badge/Total_Weekly_Commits-{total}-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>\n'
 
-    # Combine (No Mermaid Pie Chart anymore)
+    # Combine
     full_readme = HEADER_TOP + "\n" + ARSENAL_HTML + "\n" + velocity_section + "\n" + badge_html + "\n" + FOOTER_HTML
 
     with open("README.md", "w", encoding="utf-8") as f:

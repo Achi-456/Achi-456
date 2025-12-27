@@ -54,6 +54,20 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 ---
 
+
+<!-- START_WEEKLY_GOALS -->
+### 🎯 Weekly Goal Tracker
+
+| Repository | Weekly Progress | Status |
+| :--- | :--- | :--- |
+| **Rhel Automation Scripts** | `▓▓▓▓▓▓▓▓▓▓` ✅ **4/4** |
+| **Infrastructure Playground** | `▓▓▓▓▓▓▓▓▓▓` ✅ **4/3** |
+| **K8S Lab Experiments** | `▓▓░░░░░░░░` 🚧 **1/5** |
+| **Engineering Journal** | `▓░░░░░░░░░` 🚧 **1/7** |
+
+*Last updated: 2025-12-27 18:59*
+<!-- END_WEEKLY_GOALS -->
+
 ### 📊 Github Stats
 
 <div align="center">

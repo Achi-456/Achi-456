@@ -15,7 +15,6 @@ REPOS = {
 }
 
 # 1. THE TOP SECTION (Header, Socials, About, Arsenal)
-# You can edit the text inside these quotes to change your profile bio.
 HEADER_HTML = """<div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=800020&height=300&section=header&text=Achintha%20Rukshan&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=DevOps%20and%20Infrastructure%20Engineer&descAlignY=55&descAlign=62"/>
 </div>
@@ -101,8 +100,12 @@ def get_data():
     g = Github(auth=auth)
     user = g.get_user(USERNAME)
     
+    # --- FIX IS HERE: Separation of subtraction and replacement ---
     now = datetime.now(pytz.utc)
-    start_of_week = now - timedelta(days=now.weekday()).replace(hour=0, minute=0, second=0, microsecond=0)
+    # Calculate Monday
+    start_of_week = now - timedelta(days=now.weekday())
+    # Set time to 00:00:00
+    start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
     
     rows = []
     total_commits = 0

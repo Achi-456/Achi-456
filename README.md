@@ -63,6 +63,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
   <br/>
   <br/>
 
-  <img src="https://metrics.lecoq.io/Achi-456?template=classic&base.header=0&base.activity=1&base.community=0&base.repositories=0&base.metadata=0&isocalendar=1&config.timezone=Asia%2FColombo" alt="metrics" />
+  <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/profile-summary-card-output/default/0-profile-details.svg" width="45%" />
+  <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/profile-summary-card-output/default/2-most-commit-language.svg" width="45%" />
 
 </div>

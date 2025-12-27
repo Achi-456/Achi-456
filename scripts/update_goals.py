@@ -3,7 +3,9 @@ from github import Github, Auth
 from datetime import datetime, timedelta
 import pytz
 
-# --- CONFIGURATION ---
+# ==========================================
+# 🔧 CONFIGURATION & PROFILE TEXT
+# ==========================================
 USERNAME = "Achi-456"
 REPOS = {
     "Rhel-Automation-Scripts": {"goal": 4, "label": "RHEL Scripts"},
@@ -12,132 +14,159 @@ REPOS = {
     "Engineering-Journal": {"goal": 7, "label": "Eng Journal"}
 }
 
-def generate_ascii_bar(count, goal, length=20):
-    """Creates a text-based progress bar"""
-    if goal == 0:
-        percent = 1.0
-    else:
-        percent = min(count / goal, 1.0)
-    
-    filled_length = int(length * percent)
-    bar = "█" * filled_length + "░" * (length - filled_length)
-    return bar, int(percent * 100)
+# 1. THE TOP SECTION (Header, Socials, About, Arsenal)
+# You can edit the text inside these quotes to change your profile bio.
+HEADER_HTML = """<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=800020&height=300&section=header&text=Achintha%20Rukshan&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=DevOps%20and%20Infrastructure%20Engineer&descAlignY=55&descAlign=62"/>
+</div>
 
-def get_weekly_progress():
+<div align="center">
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=25&pause=1000&color=2E64FE&center=true&vCenter=true&width=500&lines=Building+Resilient+Infrastructure;Automating+The+Boring+Stuff;Exploring+RHEL+and+VMware;Intern+at+MillenniumIT+ESP" alt="Typing SVG" />
+  </a>
+</div>
+
+<br/>
+
+<div align="center">
+  <a href="https://www.linkedin.com/in/achintha-rukshan-583671344/">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="mailto:achinthar456@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-800020?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
+  <a href="mailto:hathurusinghahar.22@uom.lk">
+    <img src="https://img.shields.io/badge/UoM_Email-005a9c?style=for-the-badge&logo=minutemailer&logoColor=white" />
+  </a>
+  <a href="https://kodekloud.com/">
+    <img src="https://img.shields.io/badge/KodeKloud-2E64FE?style=for-the-badge&logo=kubernetes&logoColor=white" />
+  </a>
+</div>
+
+<br/>
+
+<div align="center">
+
+### 🧙‍♂️ About Me
+
+I am a **DevOps enthusiast** and undergraduate at the **University of Moratuwa**. Currently, I am applying my skills as a Trainee Infrastructure Engineer at **MillenniumIT ESP**, focusing on Enterprise Linux and Virtualization.
+
+Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt inspection systems**.
+
+</div>
+
+---
+
+### 🔮 The Arsenal
+
+| **Infrastructure** | **DevOps & CI/CD** | **Scripting** |
+| :--- | :--- | :--- |
+| ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white) | ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white) | ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) |
+| ![VMware](https://img.shields.io/badge/VMware-607078?style=flat-square&logo=vmware&logoColor=white) | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) | ![Bash](https://img.shields.io/badge/Bash-800020?style=flat-square&logo=gnu-bash&logoColor=white) |
+| ![RHEL](https://img.shields.io/badge/Red_Hat-EE0000?style=flat-square&logo=red-hat&logoColor=white) | ![Ansible](https://img.shields.io/badge/Ansible-000000?style=flat-square&logo=ansible&logoColor=white) | ![C++](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=c%2B%2B&logoColor=white) |
+
+---
+"""
+
+# 2. THE BOTTOM SECTION (Stats)
+FOOTER_HTML = """
+---
+
+### 📊 Github Stats
+
+<div align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Achi-456&theme=dark&hide_border=true&background=0d1117&ring=800020&fire=800020&currStreakNum=2E64FE&currStreakLabel=2E64FE" alt="streak stats" />
+  <br/>
+  <br/>
+  <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/profile-summary-card-output/default/0-profile-details.svg" width="45%" />
+  <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/profile-summary-card-output/default/2-most-commit-language.svg" width="45%" />
+</div>
+"""
+
+# ==========================================
+# 🧠 LOGIC: CALCULATE STATS
+# ==========================================
+
+def generate_ascii_bar(count, goal, length=20):
+    if goal == 0: pct = 1.0
+    else: pct = min(count / goal, 1.0)
+    filled = int(length * pct)
+    return "█" * filled + "░" * (length - filled), int(pct * 100)
+
+def get_data():
     token = os.getenv('GH_TOKEN')
-    if not token:
-        raise ValueError("GH_TOKEN environment variable is missing")
+    if not token: raise ValueError("GH_TOKEN is missing")
     
     auth = Auth.Token(token)
     g = Github(auth=auth)
     user = g.get_user(USERNAME)
     
-    # Calculate start of the week (Monday)
     now = datetime.now(pytz.utc)
-    start_of_week = now - timedelta(days=now.weekday())
-    start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
-
+    start_of_week = now - timedelta(days=now.weekday()).replace(hour=0, minute=0, second=0, microsecond=0)
+    
     rows = []
-    total_commits_all = 0
+    total_commits = 0
     mermaid_data = ""
-
-    print(f"Checking commits since: {start_of_week.strftime('%Y-%m-%d')}")
+    
+    print(f"Fetch start: {start_of_week.strftime('%Y-%m-%d')}")
 
     for repo_name, config in REPOS.items():
         try:
             repo = user.get_repo(repo_name)
-            commits = repo.get_commits(since=start_of_week, author=USERNAME)
-            count = commits.totalCount
+            count = repo.get_commits(since=start_of_week, author=USERNAME).totalCount
             
             goal = config['goal']
             label = config['label']
-            total_commits_all += count
-
-            # Generate ASCII Bar
+            total_commits += count
+            
             bar, pct = generate_ascii_bar(count, goal)
-
-            # Determine Icon
-            if count >= goal:
-                status = "✅"
-            elif count > 0:
-                status = "🚧" 
-            else:
-                status = "💤"
-
-            # Create the Table Row
-            row = f"| {status} **{label}** | `{bar}` | **{pct}%** | **{count}/{goal}** |"
-            rows.append(row)
-
-            # Generate Mermaid Data
-            if count > 0:
-                mermaid_data += f'    "{label}" : {count}\n'
-            else:
-                 mermaid_data += f'    "{label}" : 0.01\n'
-
+            status = "✅" if count >= goal else "🚧" if count > 0 else "💤"
+            
+            rows.append(f"| {status} **{label}** | `{bar}` | **{pct}%** | **{count}/{goal}** |")
+            
+            # Add to graph data (prevent 0 crash)
+            val = count if count > 0 else 0.01
+            mermaid_data += f'    "{label}" : {val}\n'
+            
         except Exception as e:
-            print(f"Error checking {repo_name}: {e}")
-            rows.append(f"| ❌ **{repo_name}** | Error | 0% | 0/0 |")
+            print(f"Error {repo_name}: {e}")
+            rows.append(f"| ❌ {repo_name} | Error | 0% | 0/0 |")
 
-    return rows, total_commits_all, mermaid_data
+    return rows, total_commits, mermaid_data
 
-def update_readme(stats_rows, total_commits, mermaid_pie):
-    readme_path = "README.md"
-    
-    # Get Current Date
-    now = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
-
-    # 1. HTML Table Construction
-    table_header = """
-<div align="center">
-<h3>🚀 Weekly Engineering Velocity</h3>
-<p><i>Last updated: {}</i></p>
-
-| Repository | Weekly Progress | % | Status |
-| :--- | :--- | :--- | :--- |""".format(now)
-
-    stats_content = "\n".join(stats_rows)
-    table_footer = "</div>"
-
-    # 2. Total Badge
-    badge_url = f"https://img.shields.io/badge/Total_Commits-{total_commits}-2E64FE?style=for-the-badge&logo=github&logoColor=white"
-    badge_html = f'\n<p align="center"><img src="{badge_url}" /></p>\n'
-
-    # 3. Mermaid Chart 
-    # WE USE SIMPLE STRING CONCATENATION HERE TO AVOID SYNTAX ERRORS
-    mermaid_header = "```mermaid\n"
-    mermaid_header += "%%{init: {'theme': 'dark', 'themeVariables': { 'pie1': '#800020', 'pie2': '#2E64FE', 'pie3': '#2ea44f', 'pie4': '#dbab09' }}}%%\n"
-    mermaid_header += "pie title Work Distribution\n"
-    
-    mermaid_footer = "```\n"
-    
-    mermaid_section = mermaid_header + mermaid_pie + mermaid_footer
-
-    new_content = f"{table_header}\n{stats_content}\n{table_footer}\n{badge_html}\n{mermaid_section}"
-
-    if os.path.exists(readme_path):
-        with open(readme_path, "r", encoding="utf-8") as f:
-            content = f.read()
-
-        start_marker = ""
-        end_marker = ""
-
-        start_index = content.find(start_marker)
-        end_index = content.find(end_marker)
-
-        if start_index != -1 and end_index != -1:
-            before = content[:start_index + len(start_marker)]
-            after = content[end_index:]
-            
-            final_content = f"{before}\n{new_content}\n{after}"
-            
-            with open(readme_path, "w", encoding="utf-8") as f:
-                f.write(final_content)
-            print("README updated successfully.")
-        else:
-            print("Markers not found in README.md!")
-    else:
-        print("README.md not found!")
+# ==========================================
+# 📝 WRITE TO FILE
+# ==========================================
 
 if __name__ == "__main__":
-    rows, total, pie_data = get_weekly_progress()
-    update_readme(rows, total, pie_data)
+    rows, total, pie_data = get_data()
+    
+    # 1. Build Tracker HTML
+    now_str = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
+    tracker_html = f"""
+<div align="center">
+<h3>🚀 Weekly Engineering Velocity</h3>
+<p><i>Last updated: {now_str}</i></p>
+
+| Repository | Weekly Progress | % | Status |
+| :--- | :--- | :--- | :--- |
+""" + "\n".join(rows) + "\n</div>"
+
+    # 2. Build Badge
+    badge_html = f'\n<p align="center"><img src="https://img.shields.io/badge/Total_Commits-{total}-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>\n'
+
+    # 3. Build Mermaid (String concatenation to avoid syntax errors)
+    mermaid_block = "```mermaid\n"
+    mermaid_block += "%%{init: {'theme': 'dark', 'themeVariables': { 'pie1': '#800020', 'pie2': '#2E64FE', 'pie3': '#2ea44f', 'pie4': '#dbab09' }}}%%\n"
+    mermaid_block += "pie title Work Distribution\n"
+    mermaid_block += pie_data
+    mermaid_block += "```\n"
+
+    # 4. COMBINE EVERYTHING
+    full_readme = HEADER_HTML + "\n" + tracker_html + "\n" + badge_html + "\n" + mermaid_block + "\n" + FOOTER_HTML
+
+    # 5. Overwrite README.md
+    with open("README.md", "w", encoding="utf-8") as f:
+        f.write(full_readme)
+    
+    print("✅ README.md successfully rebuilt from scratch.")

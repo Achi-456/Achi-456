@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=800020&height=300&section=header&text=Achintha%20Rukshan&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=DevOps%20and%20Infrastructure%20Engineer&descAlignY=55&descAlign=62"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=2E64FE&height=300&section=header&text=Achintha%20Rukshan&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=DevOps%20and%20Infrastructure%20Engineer&descAlignY=55&descAlign=62"/>
 </div>
 
 <div align="center">
@@ -39,20 +39,43 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 ---
 
+
 ### 🔮 The Arsenal
 
-| **Infrastructure** | **DevOps & CI/CD** | **Scripting** |
-| :--- | :--- | :--- |
-| ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white) | ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white) | ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) |
-| ![VMware](https://img.shields.io/badge/VMware-607078?style=flat-square&logo=vmware&logoColor=white) | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) | ![Bash](https://img.shields.io/badge/Bash-800020?style=flat-square&logo=gnu-bash&logoColor=white) |
-| ![RHEL](https://img.shields.io/badge/Red_Hat-EE0000?style=flat-square&logo=red-hat&logoColor=white) | ![Ansible](https://img.shields.io/badge/Ansible-000000?style=flat-square&logo=ansible&logoColor=white) | ![C++](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=c%2B%2B&logoColor=white) |
+<table border="0" width="100%">
+    <tr>
+        <td width="60%" valign="middle">
+            <h4 align="left">☁️ Infrastructure & Virtualization</h4>
+            <p>
+                <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white" />
+                <img src="https://img.shields.io/badge/VMware-607078?style=flat-square&logo=vmware&logoColor=white" />
+                <img src="https://img.shields.io/badge/Red_Hat-EE0000?style=flat-square&logo=red-hat&logoColor=white" />
+            </p>
+            <h4 align="left">🚀 DevOps & Automation</h4>
+            <p>
+                <img src="https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white" />
+                <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
+                <img src="https://img.shields.io/badge/Ansible-000000?style=flat-square&logo=ansible&logoColor=white" />
+            </p>
+            <h4 align="left">💻 Scripting & Languages</h4>
+            <p>
+                <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
+                <img src="https://img.shields.io/badge/Bash-800020?style=flat-square&logo=gnu-bash&logoColor=white" />
+                <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=c%2B%2B&logoColor=white" />
+            </p>
+        </td>
+        <td width="40%" align="center" valign="middle">
+            <img src="YOUR_UPLOADED_GIF_LINK_HERE" width="100%" alt="Coding Gif"/>
+        </td>
+    </tr>
+</table>
 
 ---
 
 
 <div align="center">
 <h3>🚀 Weekly Engineering Velocity</h3>
-<p><i>Last updated: 2025-12-27 19:44 UTC</i></p>
+<p><i>Last updated: 2025-12-27 20:05 UTC</i></p>
 
 | Repository | Weekly Progress | % | Status |
 | :--- | :--- | :--- | :--- |
@@ -74,12 +97,10 @@ pie title Work Distribution
 ```
 
 
----
-
 ### 📊 Github Stats
 
 <div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Achi-456&theme=dark&hide_border=true&background=0d1117&ring=800020&fire=800020&currStreakNum=2E64FE&currStreakLabel=2E64FE" alt="streak stats" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Achi-456&theme=dark&hide_border=true&background=0d1117&ring=2E64FE&fire=2E64FE&currStreakNum=2E64FE&currStreakLabel=2E64FE" alt="streak stats" />
   <br/>
   <br/>
   <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/profile-summary-card-output/default/0-profile-details.svg" width="45%" />

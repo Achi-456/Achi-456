@@ -55,13 +55,9 @@ def main():
     print(f"Starting update for user: {USERNAME}")
     
     # --- SAFE MARKER CONSTRUCTION ---
-    # We build these strings so copy-paste doesn't break them
     start_marker = "<" + "!-- START_WEEKLY_GOALS --" + ">"
     end_marker = "<" + "!-- END_WEEKLY_GOALS --" + ">"
     
-    # Debug print to prove they are not empty
-    print(f"DEBUG: Using markers '{start_marker}' and '{end_marker}'")
-
     # Generate the Markdown Table
     markdown_output = ["### 🎯 Weekly Goal Tracker\n"]
     markdown_output.append("| Repository | Weekly Progress | Status |")
@@ -84,25 +80,38 @@ def main():
     with open(readme_path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    # Find the positions instead of splitting (Safer!)
+    # --- AUTO-HEALING LOGIC ---
+    # If markers are missing, insert them automatically before the "Github Stats" section
+    if start_marker not in content or end_marker not in content:
+        print("WARNING: Markers not found. Auto-inserting them...")
+        
+        # Look for the Stats section header
+        target_section = "### 📊 Github Stats"
+        
+        if target_section in content:
+            # Insert markers BEFORE the stats section
+            insertion = f"\n{start_marker}\n{end_marker}\n\n{target_section}"
+            content = content.replace(target_section, insertion)
+        else:
+            # Fallback: Append to end of file
+            content += f"\n\n{start_marker}\n{end_marker}\n"
+            
+    # Now perform the update as normal
     start_pos = content.find(start_marker)
     end_pos = content.find(end_marker)
 
     if start_pos != -1 and end_pos != -1:
-        # Keep everything before the start marker
         pre_content = content[:start_pos + len(start_marker)]
-        # Keep everything after the end marker
         post_content = content[end_pos:]
         
-        # Combine
         new_content = pre_content + "\n" + "\n".join(markdown_output) + "\n" + post_content
         
         with open(readme_path, "w", encoding="utf-8") as f:
             f.write(new_content)
         print("SUCCESS: README updated successfully.")
     else:
-        print("WARNING: Markers not found in README.md.")
-        print(f"Make sure you have exactly {start_marker} and {end_marker} in your README.")
+        print("CRITICAL ERROR: Could not place markers even after auto-insert.")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

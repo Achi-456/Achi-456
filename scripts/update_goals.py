@@ -7,6 +7,11 @@ import pytz
 # 🔧 CONFIGURATION & PROFILE TEXT
 # ==========================================
 USERNAME = "Achi-456"
+
+# ⚠️ ACTION REQUIRED: Upload your GIF to your repo and paste the RAW link here
+# Example: "https://raw.githubusercontent.com/Achi-456/Achi-456/main/gif3(1).gif"
+GIF_URL = "YOUR_UPLOADED_GIF_LINK_HERE" 
+
 REPOS = {
     "Rhel-Automation-Scripts": {"goal": 4, "label": "RHEL Scripts"},
     "Infrastructure-Playground": {"goal": 3, "label": "Infra Playground"},
@@ -14,9 +19,10 @@ REPOS = {
     "Engineering-Journal": {"goal": 7, "label": "Eng Journal"}
 }
 
-# 1. THE TOP SECTION (Header, Socials, About, Arsenal)
-HEADER_HTML = """<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=800020&height=300&section=header&text=Achintha%20Rukshan&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=DevOps%20and%20Infrastructure%20Engineer&descAlignY=55&descAlign=62"/>
+# 1. THE TOP SECTION (Header, Socials, About)
+# Note: Changed color to 2E64FE (Blue) in the capsule-render URL
+HEADER_TOP = """<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=2E64FE&height=300&section=header&text=Achintha%20Rukshan&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=DevOps%20and%20Infrastructure%20Engineer&descAlignY=55&descAlign=62"/>
 </div>
 
 <div align="center">
@@ -55,26 +61,51 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 </div>
 
 ---
+"""
 
+# 2. THE ARSENAL SECTION (Modernized with HTML Table + GIF)
+# Note: This replaces the old markdown table
+ARSENAL_HTML = f"""
 ### 🔮 The Arsenal
 
-| **Infrastructure** | **DevOps & CI/CD** | **Scripting** |
-| :--- | :--- | :--- |
-| ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white) | ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white) | ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) |
-| ![VMware](https://img.shields.io/badge/VMware-607078?style=flat-square&logo=vmware&logoColor=white) | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) | ![Bash](https://img.shields.io/badge/Bash-800020?style=flat-square&logo=gnu-bash&logoColor=white) |
-| ![RHEL](https://img.shields.io/badge/Red_Hat-EE0000?style=flat-square&logo=red-hat&logoColor=white) | ![Ansible](https://img.shields.io/badge/Ansible-000000?style=flat-square&logo=ansible&logoColor=white) | ![C++](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=c%2B%2B&logoColor=white) |
+<table border="0" width="100%">
+    <tr>
+        <td width="60%" valign="middle">
+            <h4 align="left">☁️ Infrastructure & Virtualization</h4>
+            <p>
+                <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white" />
+                <img src="https://img.shields.io/badge/VMware-607078?style=flat-square&logo=vmware&logoColor=white" />
+                <img src="https://img.shields.io/badge/Red_Hat-EE0000?style=flat-square&logo=red-hat&logoColor=white" />
+            </p>
+            <h4 align="left">🚀 DevOps & Automation</h4>
+            <p>
+                <img src="https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white" />
+                <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
+                <img src="https://img.shields.io/badge/Ansible-000000?style=flat-square&logo=ansible&logoColor=white" />
+            </p>
+            <h4 align="left">💻 Scripting & Languages</h4>
+            <p>
+                <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
+                <img src="https://img.shields.io/badge/Bash-800020?style=flat-square&logo=gnu-bash&logoColor=white" />
+                <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=c%2B%2B&logoColor=white" />
+            </p>
+        </td>
+        <td width="40%" align="center" valign="middle">
+            <img src="{GIF_URL}" width="100%" alt="Coding Gif"/>
+        </td>
+    </tr>
+</table>
 
 ---
 """
 
-# 2. THE BOTTOM SECTION (Stats)
+# 3. THE BOTTOM SECTION (Stats)
+# Note: Updated streak stats color to Blue (2E64FE) to match header
 FOOTER_HTML = """
----
-
 ### 📊 Github Stats
 
 <div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Achi-456&theme=dark&hide_border=true&background=0d1117&ring=800020&fire=800020&currStreakNum=2E64FE&currStreakLabel=2E64FE" alt="streak stats" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Achi-456&theme=dark&hide_border=true&background=0d1117&ring=2E64FE&fire=2E64FE&currStreakNum=2E64FE&currStreakLabel=2E64FE" alt="streak stats" />
   <br/>
   <br/>
   <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/profile-summary-card-output/default/0-profile-details.svg" width="45%" />
@@ -100,7 +131,6 @@ def get_data():
     g = Github(auth=auth)
     user = g.get_user(USERNAME)
     
-    # --- FIX IS HERE: Separation of subtraction and replacement ---
     now = datetime.now(pytz.utc)
     # Calculate Monday
     start_of_week = now - timedelta(days=now.weekday())
@@ -158,7 +188,7 @@ if __name__ == "__main__":
     # 2. Build Badge
     badge_html = f'\n<p align="center"><img src="https://img.shields.io/badge/Total_Commits-{total}-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>\n'
 
-    # 3. Build Mermaid (String concatenation to avoid syntax errors)
+    # 3. Build Mermaid
     mermaid_block = "```mermaid\n"
     mermaid_block += "%%{init: {'theme': 'dark', 'themeVariables': { 'pie1': '#800020', 'pie2': '#2E64FE', 'pie3': '#2ea44f', 'pie4': '#dbab09' }}}%%\n"
     mermaid_block += "pie title Work Distribution\n"
@@ -166,7 +196,7 @@ if __name__ == "__main__":
     mermaid_block += "```\n"
 
     # 4. COMBINE EVERYTHING
-    full_readme = HEADER_HTML + "\n" + tracker_html + "\n" + badge_html + "\n" + mermaid_block + "\n" + FOOTER_HTML
+    full_readme = HEADER_TOP + "\n" + ARSENAL_HTML + "\n" + tracker_html + "\n" + badge_html + "\n" + mermaid_block + "\n" + FOOTER_HTML
 
     # 5. Overwrite README.md
     with open("README.md", "w", encoding="utf-8") as f:

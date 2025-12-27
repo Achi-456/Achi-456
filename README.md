@@ -75,27 +75,55 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 
 <div align="center">
-<h3>🚀 Weekly Engineering Velocity</h3>
-<p><i>Last updated: 2025-12-27 20:17 UTC</i></p>
-
-| Repository | Weekly Progress | % | Status |
-| :--- | :--- | :--- | :--- |
-| 🚧 **RHEL Scripts** | `██████████░░░░░░░░░░` | **50%** | **2/4** |
-| 🚧 **Infra Playground** | `█████████████░░░░░░░` | **66%** | **2/3** |
-| 🚧 **K8s Labs** | `████░░░░░░░░░░░░░░░░` | **20%** | **1/5** |
-| 🚧 **Eng Journal** | `█████░░░░░░░░░░░░░░░` | **28%** | **2/7** |
+  <h3>🚀 Weekly Engineering Velocity</h3>
+  <p><i>Last updated: 2025-12-27 20:25 UTC</i></p>
+  
+  <div align="left" style="width: 60%; margin: auto;">
+    
+<div style="margin-bottom: 10px;">
+  <a href="https://github.com/Achi-456/rhel-automation-scripts" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/RHEL Scripts-181717?style=flat&logo=github&logoColor=white" height="25" />
+  </a>
+  <br/>
+  <img src="https://geps.dev/progress/50?color=90EE90&height=10" alt="Progress Bar" />
+  <code>2 / 4 commits</code>
 </div>
 
-<p align="center"><img src="https://img.shields.io/badge/Total_Commits-7-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>
 
-```mermaid
-%%{init: {'theme': 'dark', 'themeVariables': { 'pie1': '#800020', 'pie2': '#2E64FE', 'pie3': '#2ea44f', 'pie4': '#dbab09' }}}%%
-pie title Work Distribution
-    "RHEL Scripts" : 2
-    "Infra Playground" : 2
-    "K8s Labs" : 1
-    "Eng Journal" : 2
-```
+<div style="margin-bottom: 10px;">
+  <a href="https://github.com/Achi-456/infrastructure-playground" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/Infra Playground-181717?style=flat&logo=github&logoColor=white" height="25" />
+  </a>
+  <br/>
+  <img src="https://geps.dev/progress/66?color=90EE90&height=10" alt="Progress Bar" />
+  <code>2 / 3 commits</code>
+</div>
+
+
+<div style="margin-bottom: 10px;">
+  <a href="https://github.com/Achi-456/k8s-lab-experiments" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/K8s Labs-181717?style=flat&logo=github&logoColor=white" height="25" />
+  </a>
+  <br/>
+  <img src="https://geps.dev/progress/20?color=90EE90&height=10" alt="Progress Bar" />
+  <code>1 / 5 commits</code>
+</div>
+
+
+<div style="margin-bottom: 10px;">
+  <a href="https://github.com/Achi-456/engineering-journal" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/Eng Journal-181717?style=flat&logo=github&logoColor=white" height="25" />
+  </a>
+  <br/>
+  <img src="https://geps.dev/progress/28?color=90EE90&height=10" alt="Progress Bar" />
+  <code>2 / 7 commits</code>
+</div>
+
+  </div>
+</div>
+
+
+<p align="center"><img src="https://img.shields.io/badge/Total_Weekly_Commits-7-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>
 
 
 ### 📊 Github Stats

@@ -66,7 +66,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
       </p>
     </td>
     <td width="45%" valign="middle" align="center">
-       <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/gif3%20(1).gif" width="100%" alt="Coding Gif"/>
+        <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/gif3%20(1).gif" width="100%" alt="Coding Gif"/>
     </td>
   </tr>
 </table>
@@ -76,47 +76,39 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 <div align="center">
   <h3>🚀 Weekly Engineering Velocity</h3>
-  <p><i>Last updated: 2025-12-27 20:42 UTC</i></p>
+  <p><i>Last updated: 2025-12-27 20:46 UTC</i></p>
   
-  <div align="left" style="width: 60%; margin: auto;">
+  <div align="center" style="margin: auto;">
     
-<div style="margin-bottom: 10px;">
+<div style="margin-bottom: 8px;">
   <a href="https://github.com/Achi-456/rhel-automation-scripts" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/RHEL Scripts-181717?style=flat&logo=github&logoColor=white" height="25" />
+    <img src="https://img.shields.io/badge/📂%20RHEL%20Scripts-2E64FE?style=for-the-badge&logo=github&logoColor=white" height="28" />
   </a>
-  <br/>
-  <img src="https://geps.dev/progress/50?color=90EE90&height=10" alt="Progress Bar" />
-  <code>2 / 4 commits</code>
+  <img src="https://img.shields.io/badge/Commits-2%2F4-e3b341?style=for-the-badge" height="28" />
 </div>
 
 
-<div style="margin-bottom: 10px;">
+<div style="margin-bottom: 8px;">
   <a href="https://github.com/Achi-456/infrastructure-playground" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/Infra Playground-181717?style=flat&logo=github&logoColor=white" height="25" />
+    <img src="https://img.shields.io/badge/📂%20Infra%20Playground-2E64FE?style=for-the-badge&logo=github&logoColor=white" height="28" />
   </a>
-  <br/>
-  <img src="https://geps.dev/progress/66?color=90EE90&height=10" alt="Progress Bar" />
-  <code>2 / 3 commits</code>
+  <img src="https://img.shields.io/badge/Commits-2%2F3-e3b341?style=for-the-badge" height="28" />
 </div>
 
 
-<div style="margin-bottom: 10px;">
+<div style="margin-bottom: 8px;">
   <a href="https://github.com/Achi-456/k8s-lab-experiments" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/K8s Labs-181717?style=flat&logo=github&logoColor=white" height="25" />
+    <img src="https://img.shields.io/badge/📂%20K8s%20Labs-2E64FE?style=for-the-badge&logo=github&logoColor=white" height="28" />
   </a>
-  <br/>
-  <img src="https://geps.dev/progress/20?color=90EE90&height=10" alt="Progress Bar" />
-  <code>1 / 5 commits</code>
+  <img src="https://img.shields.io/badge/Commits-1%2F5-e3b341?style=for-the-badge" height="28" />
 </div>
 
 
-<div style="margin-bottom: 10px;">
+<div style="margin-bottom: 8px;">
   <a href="https://github.com/Achi-456/engineering-journal" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/Eng Journal-181717?style=flat&logo=github&logoColor=white" height="25" />
+    <img src="https://img.shields.io/badge/📂%20Eng%20Journal-2E64FE?style=for-the-badge&logo=github&logoColor=white" height="28" />
   </a>
-  <br/>
-  <img src="https://geps.dev/progress/28?color=90EE90&height=10" alt="Progress Bar" />
-  <code>2 / 7 commits</code>
+  <img src="https://img.shields.io/badge/Commits-2%2F7-e3b341?style=for-the-badge" height="28" />
 </div>
 
   </div>
@@ -130,8 +122,4 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 <div align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=Achi-456&theme=dark&hide_border=true&background=0d1117&ring=2E64FE&fire=2E64FE&currStreakNum=2E64FE&currStreakLabel=2E64FE" alt="streak stats" />
-  <br/>
-  <br/>
-  <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/profile-summary-card-output/default/0-profile-details.svg" width="45%" />
-  <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/profile-summary-card-output/default/2-most-commit-language.svg" width="45%" />
 </div>

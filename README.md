@@ -58,12 +58,11 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 <div align="center">
 
-  <img src="https://github-readme-stats.vercel.app/api?username=Achi-456&show_icons=true&hide_border=true&bg_color=0d1117&title_color=800020&text_color=2E64FE&icon_color=800020&v=new" height="150" alt="stats graph" />
-
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Achi-456&layout=compact&hide_border=true&bg_color=0d1117&title_color=800020&text_color=2E64FE&langs_count=6&v=new" height="150" alt="languages graph" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Achi-456&theme=dark&hide_border=true&background=0d1117&ring=800020&fire=800020&currStreakNum=2E64FE&currStreakLabel=2E64FE" alt="streak stats" />
 
   <br/>
+  <br/>
 
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Achi-456&theme=dark&hide_border=true&background=0d1117&ring=800020&fire=800020&currStreakNum=2E64FE&currStreakLabel=2E64FE" alt="streak stats" />
+  <img src="https://metrics.lecoq.io/Achi-456?template=classic&base.header=0&base.activity=1&base.community=0&base.repositories=0&base.metadata=0&isocalendar=1&config.timezone=Asia%2FColombo" alt="metrics" />
 
 </div>

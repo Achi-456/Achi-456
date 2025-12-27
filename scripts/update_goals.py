@@ -4,8 +4,7 @@ from datetime import datetime, timedelta
 import pytz
 
 # --- CONFIGURATION ---
-USERNAME = "YOUR_GITHUB_USERNAME"  # <--- REPLACE THIS
-# Define your repositories and their weekly goal numbers
+USERNAME = "Achi-456"  # Updated to your username based on the error path
 REPOS = {
     "Rhel-Automation-Scripts": {"goal": 4, "label": "RHEL Scripts"},
     "Infrastructure-Playground": {"goal": 3, "label": "Infra Playground"},
@@ -14,8 +13,10 @@ REPOS = {
 }
 
 def get_weekly_progress():
-    # Get GitHub Token from environment variables (set by GitHub Actions)
     token = os.getenv('GH_TOKEN')
+    if not token:
+        raise ValueError("GH_TOKEN environment variable is missing")
+        
     g = Github(token)
     user = g.get_user(USERNAME)
     
@@ -33,7 +34,6 @@ def get_weekly_progress():
     for repo_name, config in REPOS.items():
         try:
             repo = user.get_repo(repo_name)
-            # Get commits since start of week
             commits = repo.get_commits(since=start_of_week, author=USERNAME)
             count = commits.totalCount
             
@@ -42,9 +42,12 @@ def get_weekly_progress():
             total_commits_all += count
 
             # Calculate Percentage
-            pct = min(int((count / goal) * 100), 100)
-            
-            # Determine Color based on progress
+            if goal > 0:
+                pct = min(int((count / goal) * 100), 100)
+            else:
+                pct = 100
+
+            # Determine Color
             if count >= goal:
                 color = "2ea44f" # Green
                 status_icon = "✅"
@@ -55,18 +58,16 @@ def get_weekly_progress():
                 color = "ff0000" # Red
                 status_icon = "💤"
 
-            # 1. Generate HTML Row
+            # Generate HTML Row
             progress_url = f"https://progress-bar.dev/{pct}/?scale=100&title=progress&width=120&color={color}&suffix=%"
-            
-            row = f"""
-| **{label}** | <img src="{progress_url}" alt="{pct}%" /> | {status_icon} **{count}/{goal}** |"""
+            row = f"| **{label}** | <img src=\"{progress_url}\" alt=\"{pct}%\" /> | {status_icon} **{count}/{goal}** |"
             stats.append(row)
 
-            # 2. Generate Mermaid Data (Only add if commits > 0 to keep graph clean)
+            # Generate Mermaid Data
             if count > 0:
                 mermaid_data += f'    "{label}" : {count}\n'
             else:
-                 mermaid_data += f'    "{label}" : 0.1\n' # Small value to show empty slice
+                 mermaid_data += f'    "{label}" : 0.05\n'
 
         except Exception as e:
             print(f"Error checking {repo_name}: {e}")
@@ -77,25 +78,49 @@ def get_weekly_progress():
 def update_readme(stats_rows, total_commits, mermaid_pie):
     readme_path = "README.md"
     
-    # HTML Table Header
-    table_header = """
-<div align="center">
-
-| 📦 Repository | 📊 Weekly Progress | 📈 Status |
-| :--- | :--- | :--- |"""
-    
+    # 1. HTML Table
+    table_header = "<div align=\"center\">\n\n| 📦 Repository | 📊 Weekly Progress | 📈 Status |\n| :--- | :--- | :--- |"
     table_footer = "</div>"
-    
-    # Join the rows
     stats_content = "\n".join(stats_rows)
 
-    # Generate the Total Commits Badge
+    # 2. Total Commits Badge
     badge_url = f"https://img.shields.io/badge/Total_Commits_This_Week-{total_commits}-blue?style=for-the-badge&logo=git&logoColor=white"
     badge_html = f'<p align="center"><br/><img src="{badge_url}" alt="Total Commits" /></p>'
 
-    # Generate Mermaid Chart
-    mermaid_section = f"""
+    # 3. Mermaid Chart (Constructed safely to avoid syntax errors)
+    # We use explicit string concatenation here to avoid f-string brace conflicts
+    mermaid_header = """
 ```mermaid
-%%{{init: {{'theme': 'base', 'themeVariables': {{ 'pie1': '#2ea44f', 'pie2': '#dbab09', 'pie3': '#2188ff', 'pie4': '#ff5555' }}}}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#2ea44f', 'pie2': '#dbab09', 'pie3': '#2188ff', 'pie4': '#ff5555' }}}%%
 pie title Work Distribution (By Commits)
-{mermaid_pie}
+"""
+    mermaid_footer = "```"
+    mermaid_section = mermaid_header + mermaid_pie + mermaid_footer
+
+    # Combine all parts
+    new_content = f"{table_header}\n{stats_content}\n{table_footer}\n{badge_html}\n{mermaid_section}"
+
+    # Read and Update File
+    if os.path.exists(readme_path):
+        with open(readme_path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        start_marker = ""
+        end_marker = ""
+
+        if start_marker in content and end_marker in content:
+            before = content.split(start_marker)[0]
+            after = content.split(end_marker)[1]
+            final_content = f"{before}{start_marker}\n{new_content}\n{end_marker}{after}"
+            
+            with open(readme_path, "w", encoding="utf-8") as f:
+                f.write(final_content)
+            print("README updated successfully.")
+        else:
+            print("Markers not found in README.md!")
+    else:
+        print("README.md not found!")
+
+if __name__ == "__main__":
+    rows, total, pie_data = get_weekly_progress()
+    update_readme(rows, total, pie_data)

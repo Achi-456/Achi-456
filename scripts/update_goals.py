@@ -4,13 +4,15 @@ from datetime import datetime, timedelta
 import pytz
 
 # ==========================================
-# 🔧 CONFIGURATION & PROFILE TEXT
+# 🔧 CONFIGURATION
 # ==========================================
 USERNAME = "Achi-456"
 
-# ⚠️ ACTION REQUIRED: Upload your GIF to your repo and paste the RAW link here
-# Example: "https://raw.githubusercontent.com/Achi-456/Achi-456/main/gif3(1).gif"
-GIF_URL = "https://github.com/Achi-456/Achi-456/blob/main/gif3%20(1).gif" 
+# ⚠️ URGENT: PASTE YOUR GIF LINK BELOW
+# 1. Go to your repo, open 'gif3 (1).gif', click 'Raw', and copy the URL.
+# 2. Paste it inside the quotes below.
+GIF_URL = "https://raw.githubusercontent.com/Achi-456/Achi-456/main/gif3%20(1).gif" 
+# (I added a likely URL above based on standard GitHub patterns, but double-check it!)
 
 REPOS = {
     "Rhel-Automation-Scripts": {"goal": 4, "label": "RHEL Scripts"},
@@ -19,8 +21,9 @@ REPOS = {
     "Engineering-Journal": {"goal": 7, "label": "Eng Journal"}
 }
 
-# 1. THE TOP SECTION (Header, Socials, About)
-# Note: Changed color to 2E64FE (Blue) in the capsule-render URL
+# ==========================================
+# 1. HEADER SECTION
+# ==========================================
 HEADER_TOP = """<div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=2E64FE&height=300&section=header&text=Achintha%20Rukshan&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=DevOps%20and%20Infrastructure%20Engineer&descAlignY=55&descAlign=62"/>
 </div>
@@ -63,44 +66,47 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 ---
 """
 
-# 2. THE ARSENAL SECTION (Modernized with HTML Table + GIF)
-# Note: This replaces the old markdown table
+# ==========================================
+# 2. ARSENAL SECTION (Table Layout with border="0")
+# ==========================================
 ARSENAL_HTML = f"""
 ### 🔮 The Arsenal
 
-<table border="0" width="100%">
-    <tr>
-        <td width="60%" valign="middle">
-            <h4 align="left">☁️ Infrastructure & Virtualization</h4>
-            <p>
-                <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white" />
-                <img src="https://img.shields.io/badge/VMware-607078?style=flat-square&logo=vmware&logoColor=white" />
-                <img src="https://img.shields.io/badge/Red_Hat-EE0000?style=flat-square&logo=red-hat&logoColor=white" />
-            </p>
-            <h4 align="left">🚀 DevOps & Automation</h4>
-            <p>
-                <img src="https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white" />
-                <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
-                <img src="https://img.shields.io/badge/Ansible-000000?style=flat-square&logo=ansible&logoColor=white" />
-            </p>
-            <h4 align="left">💻 Scripting & Languages</h4>
-            <p>
-                <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
-                <img src="https://img.shields.io/badge/Bash-800020?style=flat-square&logo=gnu-bash&logoColor=white" />
-                <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=c%2B%2B&logoColor=white" />
-            </p>
-        </td>
-        <td width="40%" align="center" valign="middle">
-            <img src="{GIF_URL}" width="100%" alt="Coding Gif"/>
-        </td>
-    </tr>
+<table border="0">
+  <tr>
+    <td width="55%" valign="top">
+      <br/>
+      <h4 align="left">☁️ Infrastructure & Virtualization</h4>
+      <p>
+        <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white" />
+        <img src="https://img.shields.io/badge/VMware-607078?style=flat-square&logo=vmware&logoColor=white" />
+        <img src="https://img.shields.io/badge/Red_Hat-EE0000?style=flat-square&logo=red-hat&logoColor=white" />
+      </p>
+      <h4 align="left">🚀 DevOps & Automation</h4>
+      <p>
+        <img src="https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white" />
+        <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
+        <img src="https://img.shields.io/badge/Ansible-000000?style=flat-square&logo=ansible&logoColor=white" />
+      </p>
+      <h4 align="left">💻 Scripting & Languages</h4>
+      <p>
+        <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
+        <img src="https://img.shields.io/badge/Bash-800020?style=flat-square&logo=gnu-bash&logoColor=white" />
+        <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=c%2B%2B&logoColor=white" />
+      </p>
+    </td>
+    <td width="45%" valign="middle" align="center">
+       <img src="{GIF_URL}" width="100%" alt="Coding Gif"/>
+    </td>
+  </tr>
 </table>
 
 ---
 """
 
-# 3. THE BOTTOM SECTION (Stats)
-# Note: Updated streak stats color to Blue (2E64FE) to match header
+# ==========================================
+# 3. STATS SECTION
+# ==========================================
 FOOTER_HTML = """
 ### 📊 Github Stats
 
@@ -132,9 +138,7 @@ def get_data():
     user = g.get_user(USERNAME)
     
     now = datetime.now(pytz.utc)
-    # Calculate Monday
     start_of_week = now - timedelta(days=now.weekday())
-    # Set time to 00:00:00
     start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
     
     rows = []
@@ -157,7 +161,6 @@ def get_data():
             
             rows.append(f"| {status} **{label}** | `{bar}` | **{pct}%** | **{count}/{goal}** |")
             
-            # Add to graph data (prevent 0 crash)
             val = count if count > 0 else 0.01
             mermaid_data += f'    "{label}" : {val}\n'
             
@@ -174,7 +177,6 @@ def get_data():
 if __name__ == "__main__":
     rows, total, pie_data = get_data()
     
-    # 1. Build Tracker HTML
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
     tracker_html = f"""
 <div align="center">
@@ -185,21 +187,17 @@ if __name__ == "__main__":
 | :--- | :--- | :--- | :--- |
 """ + "\n".join(rows) + "\n</div>"
 
-    # 2. Build Badge
     badge_html = f'\n<p align="center"><img src="https://img.shields.io/badge/Total_Commits-{total}-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>\n'
 
-    # 3. Build Mermaid
     mermaid_block = "```mermaid\n"
     mermaid_block += "%%{init: {'theme': 'dark', 'themeVariables': { 'pie1': '#800020', 'pie2': '#2E64FE', 'pie3': '#2ea44f', 'pie4': '#dbab09' }}}%%\n"
     mermaid_block += "pie title Work Distribution\n"
     mermaid_block += pie_data
     mermaid_block += "```\n"
 
-    # 4. COMBINE EVERYTHING
     full_readme = HEADER_TOP + "\n" + ARSENAL_HTML + "\n" + tracker_html + "\n" + badge_html + "\n" + mermaid_block + "\n" + FOOTER_HTML
 
-    # 5. Overwrite README.md
     with open("README.md", "w", encoding="utf-8") as f:
         f.write(full_readme)
     
-    print("✅ README.md successfully rebuilt from scratch.")
+    print("✅ README.md successfully rebuilt.")

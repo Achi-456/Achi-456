@@ -1,43 +1,3 @@
-
-<div align="center">
-
-| 📦 Repository | 📊 Weekly Progress | 📈 Status |
-| :--- | :--- | :--- |
-| **RHEL Scripts** | <img src="https://progress-bar.dev/50/?scale=100&title=progress&width=120&color=dbab09&suffix=%" alt="50%" /> | 🚧 **2/4** |
-| **Infra Playground** | <img src="https://progress-bar.dev/66/?scale=100&title=progress&width=120&color=dbab09&suffix=%" alt="66%" /> | 🚧 **2/3** |
-| **K8s Labs** | <img src="https://progress-bar.dev/20/?scale=100&title=progress&width=120&color=dbab09&suffix=%" alt="20%" /> | 🚧 **1/5** |
-| **Eng Journal** | <img src="https://progress-bar.dev/28/?scale=100&title=progress&width=120&color=dbab09&suffix=%" alt="28%" /> | 🚧 **2/7** |
-</div>
-<p align="center"><br/><img src="https://img.shields.io/badge/Total_Commits_This_Week-7-blue?style=for-the-badge&logo=git&logoColor=white" alt="Total Commits" /></p>
-
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#2ea44f', 'pie2': '#dbab09', 'pie3': '#2188ff', 'pie4': '#ff5555' }}}%%
-pie title Work Distribution (By Commits)
-    "RHEL Scripts" : 2
-    "Infra Playground" : 2
-    "K8s Labs" : 1
-    "Eng Journal" : 2
-```
-
-<div align="center">
-
-| 📦 Repository | 📊 Weekly Progress | 📈 Status |
-| :--- | :--- | :--- |
-| **RHEL Scripts** | <img src="https://progress-bar.dev/50/?scale=100&title=progress&width=120&color=dbab09&suffix=%" alt="50%" /> | 🚧 **2/4** |
-| **Infra Playground** | <img src="https://progress-bar.dev/66/?scale=100&title=progress&width=120&color=dbab09&suffix=%" alt="66%" /> | 🚧 **2/3** |
-| **K8s Labs** | <img src="https://progress-bar.dev/20/?scale=100&title=progress&width=120&color=dbab09&suffix=%" alt="20%" /> | 🚧 **1/5** |
-| **Eng Journal** | <img src="https://progress-bar.dev/28/?scale=100&title=progress&width=120&color=dbab09&suffix=%" alt="28%" /> | 🚧 **2/7** |
-</div>
-<p align="center"><br/><img src="https://img.shields.io/badge/Total_Commits_This_Week-7-blue?style=for-the-badge&logo=git&logoColor=white" alt="Total Commits" /></p>
-
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#2ea44f', 'pie2': '#dbab09', 'pie3': '#2188ff', 'pie4': '#ff5555' }}}%%
-pie title Work Distribution (By Commits)
-    "RHEL Scripts" : 2
-    "Infra Playground" : 2
-    "K8s Labs" : 1
-    "Eng Journal" : 2
-```
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=800020&height=300&section=header&text=Achintha%20Rukshan&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=DevOps%20and%20Infrastructure%20Engineer&descAlignY=55&descAlign=62"/>
 </div>
@@ -94,19 +54,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 ---
 
-
-<!-- START_WEEKLY_GOALS -->
-### 🎯 Weekly Goal Tracker
-
-| Repository | Weekly Progress | Status |
-| :--- | :--- | :--- |
-| **Rhel Automation Scripts** | `▓▓▓▓▓▓▓▓▓▓` ✅ **4/4** |
-| **Infrastructure Playground** | `▓▓▓▓▓▓▓▓▓▓` ✅ **4/3** |
-| **K8S Lab Experiments** | `▓▓░░░░░░░░` 🚧 **1/5** |
-| **Engineering Journal** | `▓▓░░░░░░░░` 🚧 **2/7** |
-
-*Last updated: 2025-12-27 19:06*
-<!-- END_WEEKLY_GOALS -->
+---
 
 ### 📊 Github Stats
 

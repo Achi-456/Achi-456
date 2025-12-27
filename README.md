@@ -1,6 +1,6 @@
 <div align="center">
 
-# Hi there 👋, I'm [YOUR NAME]
+# Hi there 👋, I'm [Achintha Rukshan ]
 
 ### ☁️ DevOps Engineer | 🏗️ Infrastructure | 🐧 Linux Enthusiast
 
@@ -46,6 +46,6 @@
 ### 📊 Github Stats
 
 <div align="center">
-<img src="https://github-readme-stats.vercel.app/api?username=[YOUR_USERNAME]&show_icons=true&theme=radical&hide_border=true" height="150" alt="stats graph"  />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=[YOUR_USERNAME]&layout=compact&theme=radical&hide_border=true&langs_count=6" height="150" alt="languages graph" />
+<img src="https://github-readme-stats.vercel.app/api?username=[Achi-456]&show_icons=true&theme=radical&hide_border=true" height="150" alt="stats graph"  />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=[Achi-456]&layout=compact&theme=radical&hide_border=true&langs_count=6" height="150" alt="languages graph" />
 </div>

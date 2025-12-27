@@ -54,10 +54,14 @@ def create_progress_bar(current, goal):
 def main():
     print(f"Starting update for user: {USERNAME}")
     
-    # --- DEFINE MARKERS INSIDE MAIN TO PREVENT ERRORS ---
-    start_marker = ""
-    end_marker = ""
+    # --- SAFE MARKER CONSTRUCTION ---
+    # We build these strings so copy-paste doesn't break them
+    start_marker = "<" + "!-- START_WEEKLY_GOALS --" + ">"
+    end_marker = "<" + "!-- END_WEEKLY_GOALS --" + ">"
     
+    # Debug print to prove they are not empty
+    print(f"DEBUG: Using markers '{start_marker}' and '{end_marker}'")
+
     # Generate the Markdown Table
     markdown_output = ["### 🎯 Weekly Goal Tracker\n"]
     markdown_output.append("| Repository | Weekly Progress | Status |")
@@ -80,19 +84,25 @@ def main():
     with open(readme_path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    # Replace content between markers
-    if start_marker in content and end_marker in content:
-        pre_content = content.split(start_marker)[0]
-        post_content = content.split(end_marker)[1]
+    # Find the positions instead of splitting (Safer!)
+    start_pos = content.find(start_marker)
+    end_pos = content.find(end_marker)
+
+    if start_pos != -1 and end_pos != -1:
+        # Keep everything before the start marker
+        pre_content = content[:start_pos + len(start_marker)]
+        # Keep everything after the end marker
+        post_content = content[end_pos:]
         
-        new_content = pre_content + start_marker + "\n" + "\n".join(markdown_output) + "\n" + end_marker + post_content
+        # Combine
+        new_content = pre_content + "\n" + "\n".join(markdown_output) + "\n" + post_content
         
         with open(readme_path, "w", encoding="utf-8") as f:
             f.write(new_content)
         print("SUCCESS: README updated successfully.")
     else:
         print("WARNING: Markers not found in README.md.")
-        print(f"Make sure {start_marker} and {end_marker} are in your README.")
+        print(f"Make sure you have exactly {start_marker} and {end_marker} in your README.")
 
 if __name__ == "__main__":
     main()

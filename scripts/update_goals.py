@@ -1,10 +1,10 @@
 import os
-from github import Github
+from github import Github, Auth
 from datetime import datetime, timedelta
 import pytz
 
 # --- CONFIGURATION ---
-USERNAME = "Achi-456"  # Updated to your username based on the error path
+USERNAME = "Achi-456" 
 REPOS = {
     "Rhel-Automation-Scripts": {"goal": 4, "label": "RHEL Scripts"},
     "Infrastructure-Playground": {"goal": 3, "label": "Infra Playground"},
@@ -16,8 +16,10 @@ def get_weekly_progress():
     token = os.getenv('GH_TOKEN')
     if not token:
         raise ValueError("GH_TOKEN environment variable is missing")
-        
-    g = Github(token)
+    
+    # FIX 1: Updated Auth method to fix DeprecationWarning
+    auth = Auth.Token(token)
+    g = Github(auth=auth)
     user = g.get_user(USERNAME)
     
     # Calculate start of the week (Monday)
@@ -87,8 +89,7 @@ def update_readme(stats_rows, total_commits, mermaid_pie):
     badge_url = f"https://img.shields.io/badge/Total_Commits_This_Week-{total_commits}-blue?style=for-the-badge&logo=git&logoColor=white"
     badge_html = f'<p align="center"><br/><img src="{badge_url}" alt="Total Commits" /></p>'
 
-    # 3. Mermaid Chart (Constructed safely to avoid syntax errors)
-    # We use explicit string concatenation here to avoid f-string brace conflicts
+    # 3. Mermaid Chart
     mermaid_header = """
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#2ea44f', 'pie2': '#dbab09', 'pie3': '#2188ff', 'pie4': '#ff5555' }}}%%
@@ -108,16 +109,22 @@ pie title Work Distribution (By Commits)
         start_marker = ""
         end_marker = ""
 
-        if start_marker in content and end_marker in content:
-            before = content.split(start_marker)[0]
-            after = content.split(end_marker)[1]
-            final_content = f"{before}{start_marker}\n{new_content}\n{end_marker}{after}"
+        # FIX 2: Use .find() instead of .split() to prevent empty separator errors
+        start_index = content.find(start_marker)
+        end_index = content.find(end_marker)
+
+        if start_index != -1 and end_index != -1:
+            # Keep the markers, insert content between them
+            before = content[:start_index + len(start_marker)]
+            after = content[end_index:]
+            
+            final_content = f"{before}\n{new_content}\n{after}"
             
             with open(readme_path, "w", encoding="utf-8") as f:
                 f.write(final_content)
             print("README updated successfully.")
         else:
-            print("Markers not found in README.md!")
+            print("Markers and not found in README.md!")
     else:
         print("README.md not found!")
 

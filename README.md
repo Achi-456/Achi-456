@@ -42,32 +42,33 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 ### 🔮 The Arsenal
 
-<table border="0" width="100%">
-    <tr>
-        <td width="60%" valign="middle">
-            <h4 align="left">☁️ Infrastructure & Virtualization</h4>
-            <p>
-                <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white" />
-                <img src="https://img.shields.io/badge/VMware-607078?style=flat-square&logo=vmware&logoColor=white" />
-                <img src="https://img.shields.io/badge/Red_Hat-EE0000?style=flat-square&logo=red-hat&logoColor=white" />
-            </p>
-            <h4 align="left">🚀 DevOps & Automation</h4>
-            <p>
-                <img src="https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white" />
-                <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
-                <img src="https://img.shields.io/badge/Ansible-000000?style=flat-square&logo=ansible&logoColor=white" />
-            </p>
-            <h4 align="left">💻 Scripting & Languages</h4>
-            <p>
-                <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
-                <img src="https://img.shields.io/badge/Bash-800020?style=flat-square&logo=gnu-bash&logoColor=white" />
-                <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=c%2B%2B&logoColor=white" />
-            </p>
-        </td>
-        <td width="40%" align="center" valign="middle">
-            <img src="https://github.com/Achi-456/Achi-456/blob/main/gif3%20(1).gif" width="100%" alt="Coding Gif"/>
-        </td>
-    </tr>
+<table border="0">
+  <tr>
+    <td width="55%" valign="top">
+      <br/>
+      <h4 align="left">☁️ Infrastructure & Virtualization</h4>
+      <p>
+        <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white" />
+        <img src="https://img.shields.io/badge/VMware-607078?style=flat-square&logo=vmware&logoColor=white" />
+        <img src="https://img.shields.io/badge/Red_Hat-EE0000?style=flat-square&logo=red-hat&logoColor=white" />
+      </p>
+      <h4 align="left">🚀 DevOps & Automation</h4>
+      <p>
+        <img src="https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white" />
+        <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
+        <img src="https://img.shields.io/badge/Ansible-000000?style=flat-square&logo=ansible&logoColor=white" />
+      </p>
+      <h4 align="left">💻 Scripting & Languages</h4>
+      <p>
+        <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
+        <img src="https://img.shields.io/badge/Bash-800020?style=flat-square&logo=gnu-bash&logoColor=white" />
+        <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=c%2B%2B&logoColor=white" />
+      </p>
+    </td>
+    <td width="45%" valign="middle" align="center">
+       <img src="https://raw.githubusercontent.com/Achi-456/Achi-456/main/gif3%20(1).gif" width="100%" alt="Coding Gif"/>
+    </td>
+  </tr>
 </table>
 
 ---
@@ -75,7 +76,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 <div align="center">
 <h3>🚀 Weekly Engineering Velocity</h3>
-<p><i>Last updated: 2025-12-27 20:14 UTC</i></p>
+<p><i>Last updated: 2025-12-27 20:17 UTC</i></p>
 
 | Repository | Weekly Progress | % | Status |
 | :--- | :--- | :--- | :--- |

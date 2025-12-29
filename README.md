@@ -76,7 +76,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 <div align="center">
   <h3>🚀 Weekly Engineering Velocity</h3>
-  <p><i>Last updated: 2025-12-28 18:14 UTC</i></p>
+  <p><i>Last updated: 2025-12-29 00:54 UTC</i></p>
   
   <div align="center" style="margin: auto;">
     
@@ -84,7 +84,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
   <a href="https://github.com/Achi-456/rhel-automation-scripts" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/📂%20RHEL%20Scripts-2E64FE?style=for-the-badge&logo=github&logoColor=white" height="28" />
   </a>
-  <img src="https://img.shields.io/badge/Commits-2%2F4-e3b341?style=for-the-badge" height="28" />
+  <img src="https://img.shields.io/badge/Commits-0%2F4-b60205?style=for-the-badge" height="28" />
 </div>
 
 
@@ -92,7 +92,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
   <a href="https://github.com/Achi-456/infrastructure-playground" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/📂%20Infra%20Playground-2E64FE?style=for-the-badge&logo=github&logoColor=white" height="28" />
   </a>
-  <img src="https://img.shields.io/badge/Commits-2%2F3-e3b341?style=for-the-badge" height="28" />
+  <img src="https://img.shields.io/badge/Commits-0%2F3-b60205?style=for-the-badge" height="28" />
 </div>
 
 
@@ -100,7 +100,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
   <a href="https://github.com/Achi-456/k8s-lab-experiments" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/📂%20K8s%20Labs-2E64FE?style=for-the-badge&logo=github&logoColor=white" height="28" />
   </a>
-  <img src="https://img.shields.io/badge/Commits-1%2F5-e3b341?style=for-the-badge" height="28" />
+  <img src="https://img.shields.io/badge/Commits-0%2F5-b60205?style=for-the-badge" height="28" />
 </div>
 
 
@@ -108,14 +108,14 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
   <a href="https://github.com/Achi-456/engineering-journal" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/📂%20Eng%20Journal-2E64FE?style=for-the-badge&logo=github&logoColor=white" height="28" />
   </a>
-  <img src="https://img.shields.io/badge/Commits-2%2F7-e3b341?style=for-the-badge" height="28" />
+  <img src="https://img.shields.io/badge/Commits-0%2F7-b60205?style=for-the-badge" height="28" />
 </div>
 
   </div>
 </div>
 
 
-<p align="center"><img src="https://img.shields.io/badge/Total_Weekly_Commits-7-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>
+<p align="center"><img src="https://img.shields.io/badge/Total_Weekly_Commits-0-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>
 
 
 ### 📊 Github Stats

@@ -76,7 +76,7 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
 
 <div align="center">
   <h3>🚀 Weekly Engineering Velocity</h3>
-  <p><i>Last updated: 2026-01-11 18:14 UTC</i></p>
+  <p><i>Last updated: 2026-01-12 00:53 UTC</i></p>
   
   <div align="center" style="margin: auto;">
     
@@ -108,14 +108,14 @@ Examples of my work include **6DOF Robotic Arm control** and **Conveyor Belt ins
   <a href="https://github.com/Achi-456/engineering-journal" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/📂%20Eng%20Journal-2E64FE?style=for-the-badge&logo=github&logoColor=white" height="28" />
   </a>
-  <img src="https://img.shields.io/badge/Commits-5%2F7-e3b341?style=for-the-badge" height="28" />
+  <img src="https://img.shields.io/badge/Commits-0%2F7-b60205?style=for-the-badge" height="28" />
 </div>
 
   </div>
 </div>
 
 
-<p align="center"><img src="https://img.shields.io/badge/Total_Weekly_Commits-5-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>
+<p align="center"><img src="https://img.shields.io/badge/Total_Weekly_Commits-0-2E64FE?style=for-the-badge&logo=github&logoColor=white" /></p>
 
 
 ### 📊 Github Stats
